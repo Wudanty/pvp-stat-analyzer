@@ -18,17 +18,9 @@ public class Score {
     @Column(nullable = false)
     private String additionDate;
     @ManyToOne
-    @JoinColumn(name = "character_id")
-    private Trainee character;
+    @JoinColumn(name = "trainee_id")
+    private Trainee trainee;
 
-
-    public Score(Integer scoreId, Integer value) {
-        this.scoreId = scoreId;
-        this.value = value;
-        LocalDate today = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        this.additionDate = today.format(formatter);
-    }
 }
 
 

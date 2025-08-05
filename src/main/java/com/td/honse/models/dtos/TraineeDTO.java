@@ -8,4 +8,5 @@ public class TraineeDTO {
     private Integer careerScore;
     private String surface;
     private String distance;
+    private Integer matchScore;
 }
