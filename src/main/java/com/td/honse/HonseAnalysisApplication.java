@@ -9,7 +9,7 @@ import org.springframework.core.env.Environment;
 
 
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.td.honse")
 public class HonseAnalysisApplication {
 
 	private static final Logger log = LogManager.getLogger(HonseAnalysisApplication.class);

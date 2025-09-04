@@ -13,9 +13,7 @@ public class Score {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer scoreId;
-    @Column(nullable = false)
     private Integer value;
-    @Column(nullable = false)
     private String additionDate;
     @ManyToOne
     @JoinColumn(name = "trainee_id")

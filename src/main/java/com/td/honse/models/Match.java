@@ -6,7 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -15,10 +17,21 @@ import java.util.Set;
 @NoArgsConstructor
 public class Match {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer matchId;
     private Integer matchScore;
-    @ManyToMany
-    @JsonIgnore
-    private Set<Trainee> characters = new HashSet<>();
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "match_trainees",
+            joinColumns = @JoinColumn(name = "match_id"),
+            inverseJoinColumns = @JoinColumn(name = "trainee_id")
+    )
+    private List<Trainee> trainees = new ArrayList<>();
+    @OneToMany
+    private List<Score> matchScores;
+
+    public void addTrainees(Trainee trainee) {
+        trainee.getMatches().add(this);
+        this.getTrainees().add(trainee);
+    }
 }

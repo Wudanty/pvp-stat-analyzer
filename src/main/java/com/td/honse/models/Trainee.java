@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -17,25 +18,26 @@ public class Trainee {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer traineeId;
     @Column(nullable = false)
-    private String traineeName;
+    private String name;
     @Column(nullable = false)
     private Integer careerScore;
-    private String surface;
-    private String distance;
-    private Integer matchCount;
+    @Column(nullable = false)
+    private String matchType;
+    private Integer matchCount = 0;
     private Float averageScore;
-    @OneToMany(mappedBy = "score")
+    @OneToMany(mappedBy = "scoreId")
     @JsonManagedReference
-    private List<Score> traineeScores;
-    @ManyToMany
+    private List<Score> traineeMatchScores = new ArrayList<>();
+    @ManyToMany(mappedBy = "trainees")
     @JsonIgnore
-    @JoinTable(
-            name = "trainee_match",
-            joinColumns = @JoinColumn(name = "match_id"),
-            inverseJoinColumns = @JoinColumn(name = "trainee_id")
-    )
-    private Set<Match> matches = new HashSet<>();
+    private List<Match> matches = new ArrayList<>();
 
+    public Trainee(String traineeName, Integer careerScore, String matchType, Integer matchCount) {
+        this.name = traineeName;
+        this.careerScore = careerScore;
+        this.matchType = matchType;
+        this.matchCount = matchCount;
+    }
 }
 
 
