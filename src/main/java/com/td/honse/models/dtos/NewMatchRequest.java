@@ -11,6 +11,6 @@ import java.util.Map;
 @Data
 @AllArgsConstructor
 public class NewMatchRequest {
-    Map<Trainee, Integer> matchTraineesWithScores;
+    Map<TraineeDTO, Integer> matchTraineesWithScores;
     private Integer matchScore;
 }
