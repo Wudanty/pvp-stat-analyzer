@@ -7,7 +7,9 @@ import com.td.honse.repositories.ScoreRepository;
 import com.td.honse.repositories.TraineeRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -24,13 +26,13 @@ public class TraineeServiceImpl implements TraineeService {
 
 
     @Override
-    public Optional<Trainee> getTrainee(String name, int careerScore) {
+    public Optional<Trainee> findTraineeByNameAndCareerScore(String name, int careerScore) {
         return traineeRepository.findByNameAndCareerScore(name,careerScore);
     }
 
     @Override
     public List<Match> getTraineeMatches(Trainee trainee) {
-        return trainee.getMatches();
+        return null;
     }
 
     public Optional<Trainee> getTraineeByNameAndScore(String name, Integer careerScore) {
@@ -44,7 +46,7 @@ public class TraineeServiceImpl implements TraineeService {
     }
 
     @Override
-    public List<Score> getTraineeScores(Trainee trainee) {
-        return trainee.getTraineeMatchScores();
+    public Trainee saveTrainee(Trainee trainee) {
+        return traineeRepository.save(trainee);
     }
 }
