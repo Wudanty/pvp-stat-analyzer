@@ -4,40 +4,47 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "trainees")
 @Data
+@NoArgsConstructor
 public class Trainee {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Integer traineeId;
+    private Integer id;
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
     private Integer careerScore;
-    @Column(nullable = false)
-    private String matchType;
     private Integer matchCount = 0;
-    private Float averageScore;
-    @OneToMany(mappedBy = "scoreId")
-    @JsonManagedReference
-    private List<Score> traineeMatchScores = new ArrayList<>();
-    @ManyToMany(mappedBy = "trainees")
-    @JsonIgnore
-    private List<Match> matches = new ArrayList<>();
-
-    public Trainee(String traineeName, Integer careerScore, String matchType, Integer matchCount) {
+    private Float averageScore = 0f;
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "trainee_matches",
+            joinColumns = {@JoinColumn(name = "trainee_id")},
+            inverseJoinColumns = {@JoinColumn(name = "match_id")}
+    )
+    List<Match> matches = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "traineeId")
+    List<Score> scores = new ArrayList<>();
+    public Trainee(String traineeName, Integer careerScore) {
         this.name = traineeName;
         this.careerScore = careerScore;
-        this.matchType = matchType;
-        this.matchCount = matchCount;
+
     }
+
+    public void incrementMatchCount(){
+        this.setMatchCount(this.getMatchCount()+1);
+    }
+
 }
 
 

@@ -2,9 +2,7 @@ package com.td.honse.models;
 
 import jakarta.persistence.*;
 import lombok.Data;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "scores")
@@ -12,12 +10,13 @@ import java.time.format.DateTimeFormatter;
 public class Score {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Integer scoreId;
+    private Integer id;
     private Integer value;
     private String additionDate;
-    @ManyToOne
-    @JoinColumn(name = "trainee_id")
-    private Trainee trainee;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "match_id")
+    private Match match;
+    private Integer traineeId;
 
 }
 

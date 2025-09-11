@@ -1,10 +1,9 @@
 package com.td.honse.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -15,23 +14,16 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "matches")
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(exclude = {"scores", "trainees"})
 public class Match {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer matchId;
+    private Integer id;
     private Integer matchScore;
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "match_trainees",
-            joinColumns = @JoinColumn(name = "match_id"),
-            inverseJoinColumns = @JoinColumn(name = "trainee_id")
-    )
+    @OneToMany(mappedBy = "match")
+    private List<Score> scores = new ArrayList<>();
+    @ManyToMany(mappedBy = "matches")
     private List<Trainee> trainees = new ArrayList<>();
-    @OneToMany
-    private List<Score> matchScores;
-
-    public void addTrainees(Trainee trainee) {
-        trainee.getMatches().add(this);
-        this.getTrainees().add(trainee);
-    }
 }
