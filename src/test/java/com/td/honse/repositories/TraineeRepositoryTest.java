@@ -1,20 +1,14 @@
-package com.td.honse;
+package com.td.honse.repositories;
 
 import com.td.honse.models.Match;
 import com.td.honse.models.Score;
 import com.td.honse.models.Trainee;
-import com.td.honse.models.dtos.NewMatchRequest;
-import com.td.honse.models.dtos.TraineeDTO;
-import com.td.honse.repositories.TraineeRepository;
-import com.td.honse.services.*;
 import lombok.extern.log4j.Log4j2;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
-import org.springframework.context.annotation.Import;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.jdbc.Sql;
 import org.testcontainers.containers.PostgreSQLContainer;
@@ -22,7 +16,6 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

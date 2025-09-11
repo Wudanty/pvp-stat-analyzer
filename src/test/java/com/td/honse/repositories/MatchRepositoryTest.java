@@ -1,17 +1,14 @@
-package com.td.honse;
+package com.td.honse.repositories;
 
 import com.td.honse.models.Match;
 import com.td.honse.models.Score;
 import com.td.honse.models.Trainee;
-import com.td.honse.repositories.MatchRepository;
-import com.td.honse.services.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
-import org.springframework.context.annotation.Import;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.jdbc.Sql;
 import org.testcontainers.containers.PostgreSQLContainer;
