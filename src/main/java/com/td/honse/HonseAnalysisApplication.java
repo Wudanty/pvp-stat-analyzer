@@ -8,8 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
 
 
-
-@SpringBootApplication(scanBasePackages = "com.td.honse")
+@SpringBootApplication
 public class HonseAnalysisApplication {
 
 	private static final Logger log = LogManager.getLogger(HonseAnalysisApplication.class);
