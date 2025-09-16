@@ -42,7 +42,7 @@ public class Trainee {
     }
 
     public void incrementMatchCount(){
-        this.setMatchCount(this.getMatchCount()+1);
+        this.setMatchCount(this.matchCount++);
     }
 
 }
