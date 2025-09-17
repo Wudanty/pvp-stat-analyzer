@@ -12,8 +12,10 @@ import java.util.Set;
 
 public interface MatchService {
     public Match saveMatch(Match match);
-    public Optional<Match> findMatchById(Integer id);
+    public Match findMatchById(Integer id);
     public List<Match> getAllMatches();
-    Optional<List<Score>> getMatchScores(Match match);
+    List<Score> getMatchScores(Match match);
     List<Match> findMatchesByParticipant(Trainee trainee);
+
+    Match getMatchById(Integer id);
 }

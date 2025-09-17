@@ -42,7 +42,7 @@ public class RegisterServiceImpl implements RegisterService{
         scoreService.saveScore(score);
 
         Trainee targetTrainee = new Trainee();
-        Optional<Trainee> trainee = traineeService.findTraineeByNameAndCareerScore(dtoTrainee.getName(), dtoTrainee.getCareerScore());
+        Optional<Trainee> trainee = Optional.ofNullable(traineeService.findTraineeByNameAndCareerScore(dtoTrainee.getName(), dtoTrainee.getCareerScore()));
         if(trainee.isPresent()){
             targetTrainee = trainee.get();
 

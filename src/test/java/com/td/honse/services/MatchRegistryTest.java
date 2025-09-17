@@ -28,7 +28,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Testcontainers
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @DataJpaTest
-@Import({MatchServiceImpl.class,TraineeServiceImpl.class,ScoreServiceImpl.class, RegisterServiceImpl.class})
+@Import({MatchServiceImpl.class, TraineeServiceImpl.class, ScoreServiceImpl.class, RegisterServiceImpl.class})
 @Log4j2
 @DirtiesContext
 //@Sql(scripts = {"/match_init.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_CLASS)
@@ -48,17 +48,15 @@ public class ServicesTest {
     ScoreService scoreService;
 
 
-
     @Test
-    public void connectionEstablished(){
+    public void connectionEstablished() {
         postgres.start();
         assertThat(postgres.isCreated()).isTrue();
         assertThat(postgres.isRunning()).isTrue();
     }
 
-
-    @BeforeEach
-    public void setup() {
+    @Test
+    public void shouldRegisterMatchAndRelatedEntities() {
 
         Map<TraineeDTO, Integer> matchParticipants = Map.ofEntries(
                 //sprint
@@ -87,13 +85,8 @@ public class ServicesTest {
                 Map.entry(new TraineeDTO("Dirt C", 11271), 17824)
         );
         registerService.registerNewMatch(new NewMatchRequest(matchParticipants, 400000));
-    }
 
-
-
-    @Test
-    public void shouldRegisterMatchAndRelatedEntities(){
-        Trainee trainee = traineeService.findTraineeByNameAndCareerScore("Sprinter A",10311).orElseThrow();
+        Trainee trainee = traineeService.findTraineeByNameAndCareerScore("Sprinter A", 10311).orElseThrow();
         List<Match> traineeMatches = trainee.getMatches();
         Match match = traineeMatches.getFirst();
         Score traineeScore = trainee.getScores().getFirst();
@@ -111,4 +104,5 @@ public class ServicesTest {
 
         assertThat(traineeScore.getValue()).isEqualTo(27504);
     }
+
 }

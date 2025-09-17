@@ -26,8 +26,8 @@ public class TraineeServiceImpl implements TraineeService {
 
 
     @Override
-    public Optional<Trainee> findTraineeByNameAndCareerScore(String name, int careerScore) {
-        return traineeRepository.findByNameAndCareerScore(name,careerScore);
+    public Trainee findTraineeByNameAndCareerScore(String name, int careerScore) {
+        return traineeRepository.findByNameAndCareerScore(name,careerScore).orElseThrow();
     }
 
     @Override

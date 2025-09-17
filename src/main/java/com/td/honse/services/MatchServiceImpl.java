@@ -39,8 +39,8 @@ public class MatchServiceImpl implements MatchService{
     }
 
     @Override
-    public Optional<Match> findMatchById(Integer id) {
-        return matchRepository.findById(id);
+    public Match findMatchById(Integer id) {
+        return matchRepository.findById(id).orElseThrow();
     }
 
     public List<Match> getAllMatches(){
@@ -48,14 +48,19 @@ public class MatchServiceImpl implements MatchService{
     }
 
     @Override
-    public Optional<List<Score>> getMatchScores(Match match) {
-        return scoreRepository.findByMatch(match);
+    public List<Score> getMatchScores(Match match) {
+        return scoreRepository.findByMatch(match).orElseThrow();
     }
 
     @Override
     public List<Match> findMatchesByParticipant(Trainee trainee) {
         return trainee.getMatches();
 
+    }
+
+    @Override
+    public Match getMatchById(Integer id) {
+        return matchRepository.findById(id).orElseThrow();
     }
 
 

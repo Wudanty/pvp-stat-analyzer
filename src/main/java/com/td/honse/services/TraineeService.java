@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TraineeService {
-    public Optional<Trainee> findTraineeByNameAndCareerScore(String Name, int careerScore);
+    public Trainee findTraineeByNameAndCareerScore(String Name, int careerScore);
     public List<Match> getTraineeMatches(Trainee trainee);
     public void updateStatistics();
     public Trainee saveTrainee(Trainee trainee);
