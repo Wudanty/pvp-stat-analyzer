@@ -7,7 +7,6 @@ import com.td.honse.models.Trainee;
 import com.td.honse.models.dtos.NewMatchRequest;
 import com.td.honse.models.dtos.TraineeDTO;
 import lombok.extern.log4j.Log4j2;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -15,7 +14,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.jdbc.Sql;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
@@ -32,7 +30,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Log4j2
 @DirtiesContext
 //@Sql(scripts = {"/match_init.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_CLASS)
-public class ServicesTest {
+public class MatchRegistryTest {
 
     @Container
     @ServiceConnection
@@ -86,7 +84,7 @@ public class ServicesTest {
         );
         registerService.registerNewMatch(new NewMatchRequest(matchParticipants, 400000));
 
-        Trainee trainee = traineeService.findTraineeByNameAndCareerScore("Sprinter A", 10311).orElseThrow();
+        Trainee trainee = traineeService.findTraineeByNameAndCareerScore("Sprinter A", 10311);
         List<Match> traineeMatches = trainee.getMatches();
         Match match = traineeMatches.getFirst();
         Score traineeScore = trainee.getScores().getFirst();
