@@ -1,5 +1,6 @@
 package com.td.honse.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -23,14 +24,14 @@ public class Trainee {
     private String name;
     @Column(nullable = false)
     private Integer careerScore;
-    private Integer matchCount = 0;
     private Float averageScore = 0f;
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
             name = "trainee_matches",
-            joinColumns = {@JoinColumn(name = "trainee_id")},
+            joinColumns = {@JoinColumn(name = "trainee_id" )},
             inverseJoinColumns = {@JoinColumn(name = "match_id")}
     )
+    @JsonBackReference
     List<Match> matches = new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "traineeId")
@@ -40,11 +41,6 @@ public class Trainee {
         this.careerScore = careerScore;
 
     }
-
-    public void incrementMatchCount(){
-        this.setMatchCount(this.matchCount++);
-    }
-
 }
 
 

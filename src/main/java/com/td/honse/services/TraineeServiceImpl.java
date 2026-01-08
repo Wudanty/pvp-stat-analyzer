@@ -27,7 +27,7 @@ public class TraineeServiceImpl implements TraineeService {
 
     @Override
     public Trainee findTraineeByNameAndCareerScore(String name, int careerScore) {
-        return traineeRepository.findByNameAndCareerScore(name,careerScore).orElseThrow();
+        return traineeRepository.findByNameAndCareerScore(name,careerScore).orElse(null);
     }
 
     @Override
@@ -48,5 +48,15 @@ public class TraineeServiceImpl implements TraineeService {
     @Override
     public Trainee saveTrainee(Trainee trainee) {
         return traineeRepository.save(trainee);
+    }
+
+    @Override
+    public Integer getTraineeMatchCountById(Integer traineeId) {
+        return traineeRepository.matchCountForTrainee(traineeId);
+    }
+
+    @Override
+    public Float getTraineeScoreCountById(Integer traineeId) {
+        return traineeRepository.averageScoreForTrainee(traineeId);
     }
 }

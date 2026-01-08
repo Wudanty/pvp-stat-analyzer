@@ -11,4 +11,6 @@ public interface TraineeService {
     public List<Match> getTraineeMatches(Trainee trainee);
     public void updateStatistics();
     public Trainee saveTrainee(Trainee trainee);
+    public Integer getTraineeMatchCountById(Integer traineeId);
+    public Float getTraineeScoreCountById(Integer traineeId);
 }

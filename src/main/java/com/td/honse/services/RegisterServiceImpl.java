@@ -28,11 +28,9 @@ public class RegisterServiceImpl implements RegisterService{
         match.setMatchScore(matchRequest.getMatchScore());
         matchService.saveMatch(match);
 
-        matchRequest.getMatchTraineesWithScores().forEach( (dtoTrainee, scoreValue) -> {;
-            registryLogic(dtoTrainee, scoreValue, match);
+        matchRequest.getMatchTraineesWithScores().forEach( (bundle) -> {;
+            registryLogic(bundle.getTrainee(), bundle.getScore(), match);
         });
-
-
 
     }
 
@@ -42,17 +40,16 @@ public class RegisterServiceImpl implements RegisterService{
         scoreService.saveScore(score);
 
         Trainee targetTrainee = new Trainee();
-        Optional<Trainee> trainee = Optional.ofNullable(traineeService.findTraineeByNameAndCareerScore(dtoTrainee.getName(), dtoTrainee.getCareerScore()));
-        if(trainee.isPresent()){
-            targetTrainee = trainee.get();
+        Trainee existingTrainee = traineeService.findTraineeByNameAndCareerScore(dtoTrainee.getName(), dtoTrainee.getCareerScore());
+        if(existingTrainee == null){
 
-        }
-        else{
             targetTrainee.setName(dtoTrainee.getName());
             targetTrainee.setCareerScore(dtoTrainee.getCareerScore());
         }
+        else{
+            targetTrainee = existingTrainee;
+        }
 
-        targetTrainee.incrementMatchCount();
         targetTrainee.getMatches().add(match);
         targetTrainee.getScores().add(score);
         traineeService.saveTrainee(targetTrainee);
