@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 @Service
 @Log4j2
 @RequiredArgsConstructor
-public class MatchServiceImpl implements MatchService{
+public class MatchServiceImpl implements MatchService {
 
     private final MatchRepository matchRepository;
     //private final TraineeRepository traineeRepository;
