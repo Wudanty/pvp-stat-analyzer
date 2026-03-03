@@ -6,6 +6,7 @@ import com.td.honse.models.Score;
 import com.td.honse.models.Trainee;
 import com.td.honse.models.dtos.NewMatchRequest;
 import com.td.honse.models.dtos.TraineeDTO;
+import com.td.honse.models.dtos.TraineeScoreBundleDTO;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,31 +57,31 @@ public class MatchRegistryTest {
     @Test
     public void shouldRegisterMatchAndRelatedEntities() {
 
-        Map<TraineeDTO, Integer> matchParticipants = Map.ofEntries(
+        List<TraineeScoreBundleDTO> matchParticipants = List.of(
                 //sprint
-                Map.entry(new TraineeDTO("Sprinter A", 10311), 27504),
-                Map.entry(new TraineeDTO("Sprinter B", 10455), 9687),
-                Map.entry(new TraineeDTO("Sprinter C", 11271), 23829),
+                new TraineeScoreBundleDTO(new TraineeDTO("Sprinter A", 10311), 27504),
+                new TraineeScoreBundleDTO(new TraineeDTO("Sprinter B", 10455), 9687),
+                new TraineeScoreBundleDTO(new TraineeDTO("Sprinter C", 11271), 23829),
 
                 //mile
-                Map.entry(new TraineeDTO("Mile A", 10311), 34838),
-                Map.entry(new TraineeDTO("Mile B", 10455), 16661),
-                Map.entry(new TraineeDTO("Mile C", 11271), 3312),
+                new TraineeScoreBundleDTO(new TraineeDTO("Mile A", 10311), 34838),
+                new TraineeScoreBundleDTO(new TraineeDTO("Mile B", 10455), 16661),
+                new TraineeScoreBundleDTO(new TraineeDTO("Mile C", 11271), 3312),
 
                 //medium
-                Map.entry(new TraineeDTO("Medium A", 10311), 25263),
-                Map.entry(new TraineeDTO("Medium B", 10455), 19954),
-                Map.entry(new TraineeDTO("Medium C", 11271), 29254),
+                new TraineeScoreBundleDTO(new TraineeDTO("Medium A", 10311), 25263),
+                new TraineeScoreBundleDTO(new TraineeDTO("Medium B", 10455), 19954),
+                new TraineeScoreBundleDTO(new TraineeDTO("Medium C", 11271), 29254),
 
                 //long
-                Map.entry(new TraineeDTO("Long A", 10311), 22614),
-                Map.entry(new TraineeDTO("Long B", 10455), 24798),
-                Map.entry(new TraineeDTO("Long C", 11271), 29254),
+                new TraineeScoreBundleDTO(new TraineeDTO("Long A", 10311), 22614),
+                new TraineeScoreBundleDTO(new TraineeDTO("Long B", 10455), 24798),
+                new TraineeScoreBundleDTO(new TraineeDTO("Long C", 11271), 29254),
 
                 //dirt
-                Map.entry(new TraineeDTO("Dirt A", 10311), 25581),
-                Map.entry(new TraineeDTO("Dirt B", 10455), 25379),
-                Map.entry(new TraineeDTO("Dirt C", 11271), 17824)
+                new TraineeScoreBundleDTO(new TraineeDTO("Dirt A", 10311), 25581),
+                new TraineeScoreBundleDTO(new TraineeDTO("Dirt C", 11271), 17824),
+                new TraineeScoreBundleDTO(new TraineeDTO("Dirt B", 10455), 25379)
         );
         registerService.registerNewMatch(new NewMatchRequest(matchParticipants, 400000));
 
@@ -98,7 +99,7 @@ public class MatchRegistryTest {
         assertThat(match.getTrainees()).contains(trainee);
         assertThat(match.getMatchScore()).isEqualTo(400000);
         assertThat(match.getTrainees().size()).isEqualTo(15);
-        assertThat(match.getScores().size()).isEqualTo(15);
+        assertThat(matchService.getMatchScores(match.getId()).size()).isEqualTo(15);
 
         assertThat(traineeScore.getValue()).isEqualTo(27504);
     }

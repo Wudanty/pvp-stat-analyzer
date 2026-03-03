@@ -28,6 +28,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DirtiesContext
 @Sql(scripts = {"/match_init.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_CLASS)
 public class TraineeRepositoryTest {
+    
 
     @Container
     @ServiceConnection
@@ -54,12 +55,10 @@ public class TraineeRepositoryTest {
         assertThat(trainee).isNotNull();
         assertThat(trainee.getName()).isEqualTo("Nice Nature");
         assertThat(trainee.getCareerScore()).isEqualTo(11272);
-        log.debug("Trainee Id: {}, Name: {}, Career score: {}, Match Count: {}, averageScore: {}",
+        log.debug("Trainee Id: {}, Name: {}, Career score: {}",
                 trainee.getId(),
                 trainee.getName(),
-                trainee.getCareerScore(),
-                trainee.getMatchCount(),
-                trainee.getAverageScore()
+                trainee.getCareerScore()
         );
     }
 
