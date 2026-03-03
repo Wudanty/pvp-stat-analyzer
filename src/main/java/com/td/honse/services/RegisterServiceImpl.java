@@ -14,12 +14,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class RegisterServiceImpl implements RegisterService{
 
-    MatchService matchService;
-    ScoreService scoreService;
-    TraineeService traineeService;
+    private final MatchService matchService;
+    private final ScoreService scoreService;
+    private final TraineeService traineeService;
 
 
     @Override

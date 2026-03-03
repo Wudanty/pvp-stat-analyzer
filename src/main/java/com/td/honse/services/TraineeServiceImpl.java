@@ -5,6 +5,7 @@ import com.td.honse.models.Score;
 import com.td.honse.models.Trainee;
 import com.td.honse.repositories.ScoreRepository;
 import com.td.honse.repositories.TraineeRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,16 +14,12 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class TraineeServiceImpl implements TraineeService {
 
 
-    TraineeRepository traineeRepository;
-    ScoreRepository scoreRepository;
-
-    public TraineeServiceImpl(TraineeRepository traineeRepository, ScoreRepository scoreRepository) {
-        this.traineeRepository = traineeRepository;
-        this.scoreRepository = scoreRepository;
-    }
+    private final TraineeRepository traineeRepository;
+    //private final ScoreRepository scoreRepository;
 
 
     @Override

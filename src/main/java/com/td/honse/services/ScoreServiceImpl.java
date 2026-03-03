@@ -6,6 +6,7 @@ import com.td.honse.models.Trainee;
 import com.td.honse.repositories.ScoreRepository;
 import com.td.honse.repositories.TraineeRepository;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -13,11 +14,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ScoreServiceImpl implements ScoreService{
 
 
-    ScoreRepository scoreRepository;
+    private final ScoreRepository scoreRepository;
 
     @Override
     public List<Score> findAllScoresOfTraineeById(Integer traineeId) {

@@ -8,6 +8,7 @@ import com.td.honse.models.dtos.TraineeDTO;
 import com.td.honse.repositories.TraineeRepository;
 import com.td.honse.repositories.MatchRepository;
 import com.td.honse.repositories.ScoreRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -21,17 +22,12 @@ import java.util.stream.Collectors;
 
 @Service
 @Log4j2
+@RequiredArgsConstructor
 public class MatchServiceImpl implements MatchService{
 
-    MatchRepository matchRepository;
-    TraineeRepository traineeRepository;
-    ScoreRepository scoreRepository;
-
-    public MatchServiceImpl(MatchRepository matchRepository, TraineeRepository traineeRepository, ScoreRepository scoreRepository) {
-        this.matchRepository = matchRepository;
-        this.traineeRepository = traineeRepository;
-        this.scoreRepository = scoreRepository;
-    }
+    private final MatchRepository matchRepository;
+    //private final TraineeRepository traineeRepository;
+    private final ScoreRepository scoreRepository;
 
     @Override
     public Match saveMatch(Match match) {
