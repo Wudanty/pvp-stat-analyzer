@@ -1,21 +1,22 @@
--- Dodanie dwóch meczów
+-- Adding two matches
 INSERT INTO matches (id, match_score) VALUES(1,400000), (2,353700);
-INSERT INTO trainees (id, name, career_score, match_count, average_score) VALUES
-(1, 'Winning Ticket', 11380, 2, 0),
-(2, 'Haru Urara', 10198, 2, 0),
-(3, 'Grass Wonder', 11598, 2, 0),
-(4, 'Rice Shower', 10987, 2, 0),
-(5, 'Maruzensky', 11271, 2, 0),
-(6, 'El Condor Pasa', 10306, 2, 0),
-(7, 'King Halo', 10311, 2, 0),
-(8, 'Vodka', 10958, 2, 0),
-(9, 'TM Opera O', 11119, 2, 0),
-(10, 'Tokai Teio', 11258, 2, 0),
-(11, 'Nice Nature', 11272, 2, 0),
-(12, 'Mejiro McQueen', 11347, 2, 0),
-(13, 'Oguri Cap', 10541, 2, 0),
-(14, 'Sakura Bakushin O', 10455, 2, 0),
-(15, 'Silence Suzuka', 10480, 2, 0);
+-- Adding 15 trainees
+INSERT INTO trainees (id, name, career_score) VALUES
+(1, 'Winning Ticket', 11380),
+(2, 'Haru Urara', 10198),
+(3, 'Grass Wonder', 11598),
+(4, 'Rice Shower', 10987),
+(5, 'Maruzensky', 11271),
+(6, 'El Condor Pasa', 10306),
+(7, 'King Halo', 10311),
+(8, 'Vodka', 10958),
+(9, 'TM Opera O', 11119),
+(10, 'Tokai Teio', 11258),
+(11, 'Nice Nature', 11272),
+(12, 'Mejiro McQueen', 11347),
+(13, 'Oguri Cap', 10541),
+(14, 'Sakura Bakushin O', 10455),
+(15, 'Silence Suzuka', 10480);
 INSERT INTO scores (id, value, addition_date, match_id, trainee_id)  VALUES
 --Match 1--
 (1, 34504, '2025-09-09 15:44:00', 1, 1),
