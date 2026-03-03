@@ -38,7 +38,7 @@ public class MatchRepositoryTest {
     MatchRepository matchRepository;
 
     @Test
-    public void connectionEstablished(){
+    public void connectionEstablished() {
         postgres.start();
         assertThat(postgres.isCreated()).isTrue();
         assertThat(postgres.isRunning()).isTrue();
@@ -51,7 +51,7 @@ public class MatchRepositoryTest {
 
 
     @Test
-    public void shouldReturnMatchById(){
+    public void shouldReturnMatchById() {
 
         List<Match> matches = matchRepository.findAll();
         assertThat(matches).isNotNull();
@@ -59,7 +59,7 @@ public class MatchRepositoryTest {
     }
 
     @Test
-    public void shouldReturnMatchTrainees(){
+    public void shouldReturnMatchTrainees() {
         List<Trainee> trainees = matchRepository.getMatchParticipants(1);
         assertThat(trainees.size()).isEqualTo(15);
         assertThat(trainees.getLast().getId()).isEqualTo(15);

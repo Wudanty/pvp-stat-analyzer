@@ -24,7 +24,7 @@ public class TraineeServiceImpl implements TraineeService {
 
     @Override
     public Trainee findTraineeByNameAndCareerScore(String name, int careerScore) {
-        return traineeRepository.findByNameAndCareerScore(name,careerScore).orElse(null);
+        return traineeRepository.findByNameAndCareerScore(name, careerScore).orElse(null);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class TraineeServiceImpl implements TraineeService {
     }
 
     public Optional<Trainee> getTraineeByNameAndScore(String name, Integer careerScore) {
-        return traineeRepository.findByNameAndCareerScore(name,careerScore);
+        return traineeRepository.findByNameAndCareerScore(name, careerScore);
     }
 
 

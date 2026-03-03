@@ -38,7 +38,7 @@ public class ScoreServiceTest {
     }
 
     @Test
-    public void returnsExpectedAverage(){
+    public void returnsExpectedAverage() {
         Double avgScore = scoreService.findAverageScoreOfTraineeById(1);
         assertThat(avgScore).isEqualTo(30984);
     }

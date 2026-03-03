@@ -28,7 +28,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DirtiesContext
 @Sql(scripts = {"/match_init.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_CLASS)
 public class TraineeRepositoryTest {
-    
+
 
     @Container
     @ServiceConnection
@@ -38,7 +38,7 @@ public class TraineeRepositoryTest {
     TraineeRepository traineeRepository;
 
     @Test
-    public void connectionEstablished(){
+    public void connectionEstablished() {
         postgres.start();
         assertThat(postgres.isCreated()).isTrue();
         assertThat(postgres.isRunning()).isTrue();
@@ -50,8 +50,8 @@ public class TraineeRepositoryTest {
     }
 
     @Test
-    public void shouldReturnTrainee(){
-        Trainee trainee = traineeRepository.findByNameAndCareerScore("Nice Nature",11272).orElseThrow();
+    public void shouldReturnTrainee() {
+        Trainee trainee = traineeRepository.findByNameAndCareerScore("Nice Nature", 11272).orElseThrow();
         assertThat(trainee).isNotNull();
         assertThat(trainee.getName()).isEqualTo("Nice Nature");
         assertThat(trainee.getCareerScore()).isEqualTo(11272);
@@ -63,17 +63,16 @@ public class TraineeRepositoryTest {
     }
 
     @Test
-    public void shouldReturnTraineeMatches(){
-        List<Match> matches = traineeRepository.findByNameAndCareerScore("TM Opera O",11119).orElseThrow().getMatches();
+    public void shouldReturnTraineeMatches() {
+        List<Match> matches = traineeRepository.findByNameAndCareerScore("TM Opera O", 11119).orElseThrow().getMatches();
         assertThat(matches).isNotNull();
         matches.forEach(m -> log.debug("Match Id: {}, Match Score: {}", m.getId(), m.getMatchScore()));
     }
 
 
-
     @Test
-    public void shouldReturnTraineeScores(){
-        List<Score> traineeScores = traineeRepository.findByNameAndCareerScore("TM Opera O",11119).orElseThrow().getScores();
+    public void shouldReturnTraineeScores() {
+        List<Score> traineeScores = traineeRepository.findByNameAndCareerScore("TM Opera O", 11119).orElseThrow().getScores();
         assertThat(traineeScores.size()).isEqualTo(2);
         assertThat(traineeScores.getFirst().getValue()).isEqualTo(21904);
     }
