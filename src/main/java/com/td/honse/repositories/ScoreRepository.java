@@ -11,6 +11,6 @@ import java.util.Optional;
 
 @Repository
 public interface ScoreRepository extends JpaRepository<Score, Integer> {
-    Optional<List<Score>> findByMatch(Match match);
+    Optional<List<Score>> findByMatchId(Integer matchId);
     Optional<List<Score>> findByTraineeId(Integer traineeId);
 }

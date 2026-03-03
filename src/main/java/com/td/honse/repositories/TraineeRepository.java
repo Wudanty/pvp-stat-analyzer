@@ -17,8 +17,8 @@ public interface TraineeRepository extends JpaRepository<Trainee,Integer> {
         @Query(value = """
                 SELECT count(m.id)
                 FROM trainees t
-                LEFT JOIN trainee_matches tm ON t.id = tm.trainee_id
-                LEFT JOIN matches m ON m.id = tm.match_id
+                INNER JOIN trainee_matches tm ON t.id = tm.trainee_id
+                INNER JOIN matches m ON m.id = tm.match_id
                 where t.id = :traineeId
                 """, nativeQuery = true)
         Integer matchCountForTrainee(@Param("traineeId") Integer traineeId);
