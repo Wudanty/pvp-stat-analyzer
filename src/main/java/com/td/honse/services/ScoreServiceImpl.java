@@ -25,6 +25,11 @@ public class ScoreServiceImpl implements ScoreService{
     }
 
     @Override
+    public Double getAverageScoreOfTraineeById(Integer traineeId) {
+        return findAllScoresOfTraineeById(traineeId).stream().mapToDouble(Score::getValue).average().orElseThrow();
+    }
+
+    @Override
     public Score saveScore(Score score) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy, HH:mm:ss");
         score.setAdditionDate(formatter.format(LocalDateTime.now()));

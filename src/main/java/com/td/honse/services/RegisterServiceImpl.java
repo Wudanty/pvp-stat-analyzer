@@ -55,7 +55,7 @@ public class RegisterServiceImpl implements RegisterService{
         traineeService.saveTrainee(targetTrainee);
 
         match.getTrainees().add(targetTrainee);
-        match.getScores().add(score);
+        score.setMatch(match);
         traineeService.saveTrainee(targetTrainee);
         scoreService.saveScore(score);
 

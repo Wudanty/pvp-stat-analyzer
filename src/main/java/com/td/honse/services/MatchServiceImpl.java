@@ -48,14 +48,19 @@ public class MatchServiceImpl implements MatchService{
     }
 
     @Override
-    public List<Score> getMatchScores(Match match) {
-        return scoreRepository.findByMatch(match).orElseThrow();
+    public List<Score> getMatchScores(Integer matchId) {
+        return scoreRepository.findByMatchId(matchId).orElseThrow();
     }
 
     @Override
     public List<Match> findMatchesByParticipant(Trainee trainee) {
         return trainee.getMatches();
 
+    }
+
+    @Override
+    public void deleteAllMatches() {
+        matchRepository.deleteAll();
     }
 
     @Override

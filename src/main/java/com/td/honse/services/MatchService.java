@@ -11,11 +11,11 @@ import java.util.Set;
 
 
 public interface MatchService {
-    public Match saveMatch(Match match);
-    public Match findMatchById(Integer id);
-    public List<Match> getAllMatches();
-    List<Score> getMatchScores(Match match);
+    Match saveMatch(Match match);
+    Match findMatchById(Integer id);
+    List<Match> getAllMatches();
+    List<Score> getMatchScores(Integer matchId);
     List<Match> findMatchesByParticipant(Trainee trainee);
-
+    void deleteAllMatches();
     Match getMatchById(Integer id);
 }
