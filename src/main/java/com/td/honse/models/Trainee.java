@@ -24,7 +24,6 @@ public class Trainee {
     private String name;
     @Column(nullable = false)
     private Integer careerScore;
-    private Float averageScore = 0f;
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
             name = "trainee_matches",
