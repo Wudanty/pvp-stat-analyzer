@@ -25,7 +25,7 @@ public class ScoreServiceImpl implements ScoreService{
     }
 
     @Override
-    public Double getAverageScoreOfTraineeById(Integer traineeId) {
+    public Double findAverageScoreOfTraineeById(Integer traineeId) {
         return findAllScoresOfTraineeById(traineeId).stream().mapToDouble(Score::getValue).average().orElseThrow();
     }
 

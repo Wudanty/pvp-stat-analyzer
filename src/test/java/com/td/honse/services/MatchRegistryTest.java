@@ -20,7 +20,6 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.util.List;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -99,7 +98,7 @@ public class MatchRegistryTest {
         assertThat(match.getTrainees()).contains(trainee);
         assertThat(match.getMatchScore()).isEqualTo(400000);
         assertThat(match.getTrainees().size()).isEqualTo(15);
-        assertThat(matchService.getMatchScores(match.getId()).size()).isEqualTo(15);
+        assertThat(matchService.findMatchScores(match.getId()).size()).isEqualTo(15);
 
         assertThat(traineeScore.getValue()).isEqualTo(27504);
     }

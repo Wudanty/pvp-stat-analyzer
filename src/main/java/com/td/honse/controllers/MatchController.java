@@ -30,7 +30,7 @@ public class MatchController {
 
     @GetMapping("/get/all")
     public List<Match> getAllMatches(){
-        return matchService.getAllMatches();
+        return matchService.findAllMatches();
     }
 
     @DeleteMapping("/delete/all")

@@ -12,7 +12,6 @@ import org.springframework.test.context.jdbc.Sql;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
-import org.testcontainers.shaded.org.checkerframework.checker.units.qual.A;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -40,7 +39,7 @@ public class ScoreServiceTest {
 
     @Test
     public void returnsExpectedAverage(){
-        Double avgScore = scoreService.getAverageScoreOfTraineeById(1);
+        Double avgScore = scoreService.findAverageScoreOfTraineeById(1);
         assertThat(avgScore).isEqualTo(30984);
     }
 

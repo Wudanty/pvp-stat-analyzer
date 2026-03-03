@@ -43,12 +43,12 @@ public class MatchServiceImpl implements MatchService{
         return matchRepository.findById(id).orElseThrow();
     }
 
-    public List<Match> getAllMatches(){
+    public List<Match> findAllMatches(){
         return matchRepository.findAll();
     }
 
     @Override
-    public List<Score> getMatchScores(Integer matchId) {
+    public List<Score> findMatchScores(Integer matchId) {
         return scoreRepository.findByMatchId(matchId).orElseThrow();
     }
 
@@ -62,11 +62,5 @@ public class MatchServiceImpl implements MatchService{
     public void deleteAllMatches() {
         matchRepository.deleteAll();
     }
-
-    @Override
-    public Match getMatchById(Integer id) {
-        return matchRepository.findById(id).orElseThrow();
-    }
-
 
 }

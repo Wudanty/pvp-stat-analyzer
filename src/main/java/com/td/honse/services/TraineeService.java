@@ -4,13 +4,12 @@ import com.td.honse.models.Match;
 import com.td.honse.models.Trainee;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface TraineeService {
     public Trainee findTraineeByNameAndCareerScore(String Name, int careerScore);
-    public List<Match> getTraineeMatches(Trainee trainee);
+    public List<Match> findTraineeMatches(Trainee trainee);
     public void updateStatistics();
     public Trainee saveTrainee(Trainee trainee);
-    public Integer getTraineeMatchCountById(Integer traineeId);
-    public Float getTraineeScoreCountById(Integer traineeId);
+    public Integer findTraineeMatchCountById(Integer traineeId);
+    public Float findTraineeScoreCountById(Integer traineeId);
 }

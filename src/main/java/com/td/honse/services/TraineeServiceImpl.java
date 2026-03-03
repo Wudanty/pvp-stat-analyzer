@@ -31,7 +31,7 @@ public class TraineeServiceImpl implements TraineeService {
     }
 
     @Override
-    public List<Match> getTraineeMatches(Trainee trainee) {
+    public List<Match> findTraineeMatches(Trainee trainee) {
         return null;
     }
 
@@ -51,12 +51,12 @@ public class TraineeServiceImpl implements TraineeService {
     }
 
     @Override
-    public Integer getTraineeMatchCountById(Integer traineeId) {
+    public Integer findTraineeMatchCountById(Integer traineeId) {
         return traineeRepository.matchCountForTrainee(traineeId);
     }
 
     @Override
-    public Float getTraineeScoreCountById(Integer traineeId) {
+    public Float findTraineeScoreCountById(Integer traineeId) {
         return traineeRepository.averageScoreForTrainee(traineeId);
     }
 }
