@@ -19,7 +19,6 @@ import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-;
 
 @Testcontainers
 @DataJpaTest
