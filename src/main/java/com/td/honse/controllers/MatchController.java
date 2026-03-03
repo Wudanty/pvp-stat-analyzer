@@ -25,7 +25,7 @@ public class MatchController {
 
     @GetMapping("/get/{id}")
     public Match getMatchById(@PathVariable Integer id){
-        return matchService.getMatchById(id);
+        return matchService.findMatchById(id);
     }
 
     @GetMapping("/get/all")
