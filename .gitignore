@@ -11,6 +11,8 @@
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+.idea/**/vcs.xml
+.idea/**/copilot.data.*
 
 # AWS User-specific
 .idea/**/aws.xml
@@ -26,6 +28,7 @@
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
+.env
 
 # Gradle
 .idea/**/gradle.xml

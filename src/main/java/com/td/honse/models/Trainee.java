@@ -1,41 +1,45 @@
 package com.td.honse.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "trainees")
 @Data
+@NoArgsConstructor
 public class Trainee {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Integer traineeId;
+    private Integer id;
     @Column(nullable = false)
-    private String traineeName;
+    private String name;
     @Column(nullable = false)
     private Integer careerScore;
-    private String surface;
-    private String distance;
-    private Integer matchCount;
-    private Float averageScore;
-    @OneToMany(mappedBy = "score")
-    @JsonManagedReference
-    private List<Score> traineeScores;
-    @ManyToMany
-    @JsonIgnore
+    @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
-            name = "trainee_match",
-            joinColumns = @JoinColumn(name = "match_id"),
-            inverseJoinColumns = @JoinColumn(name = "trainee_id")
+            name = "trainee_matches",
+            joinColumns = {@JoinColumn(name = "trainee_id" )},
+            inverseJoinColumns = {@JoinColumn(name = "match_id")}
     )
-    private Set<Match> matches = new HashSet<>();
+    @JsonBackReference
+    List<Match> matches = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "traineeId")
+    List<Score> scores = new ArrayList<>();
+    public Trainee(String traineeName, Integer careerScore) {
+        this.name = traineeName;
+        this.careerScore = careerScore;
 
+    }
 }
 
 

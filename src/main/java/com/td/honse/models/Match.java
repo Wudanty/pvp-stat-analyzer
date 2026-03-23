@@ -1,24 +1,24 @@
 package com.td.honse.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "matches")
+@ToString(exclude = {"trainees"})
 public class Match {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Integer matchId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private Integer matchScore;
-    @ManyToMany
-    @JsonIgnore
-    private Set<Trainee> characters = new HashSet<>();
+    @OneToMany(mappedBy = "matches", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<Trainee> trainees = new ArrayList<>();
 }

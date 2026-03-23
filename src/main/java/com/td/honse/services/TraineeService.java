@@ -1,13 +1,15 @@
 package com.td.honse.services;
 
+import com.td.honse.models.Match;
 import com.td.honse.models.Trainee;
-import com.td.honse.models.dtos.TraineeDTO;
 
 import java.util.List;
 
 public interface TraineeService {
-    public Trainee addTrainee(TraineeDTO requestTrainee);
-    public Trainee getTrainee(String Name, String careerScore);
-    public List<Trainee> getTraineesFromMatch();
+    public Trainee findTraineeByNameAndCareerScore(String Name, int careerScore);
+    public List<Match> findTraineeMatches(Trainee trainee);
     public void updateStatistics();
+    public Trainee saveTrainee(Trainee trainee);
+    public Integer findTraineeMatchCountById(Integer traineeId);
+    public Float findTraineeScoreCountById(Integer traineeId);
 }
